@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+
+<style id="webmakerstyle">
+/* General Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff; /* Light blue background */
+    color: #000; /* Black text */
+}
+
+/* Startup Screen */
+#startup-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #87ceeb; /* Sky blue */
+}
+
+#startup-screen img {
+    max-width: 80%;
+    height: auto;
+}
+
+/* Hidden class */
+.hidden {
+    display: none;
+}
+
+/* Cable Box Interface */
+#cable-interface {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar Section */
+#sidebar {
+    width: 200px;
+    background-color: #add8e6; /* Light blue */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+#logo-container {
+    margin-bottom: 20px;
+}
+
+#logo {
+    max-width: 80%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Vertical Buttons */
+#button-panel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.vertical-button {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #4682b4; /* Steel blue */
+    color: #fff; /* White text */
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.vertical-button:hover {
+    background-color: #5f9ea0; /* Cadet blue */
+}
+
+/* Main Display Area */
+#main-display {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+    position: relative;
+}
+
+/* Black Box */
+#black-box {
+    width: 100%;
+    height: 200px;
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#black-box h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+/* Weather Widget */
+#weather-widget {
+    background-color: #ffeb3b; /* Yellow background */
+    color: #000; /* Black text */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+}
+</style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cable Box OS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Startup Screen -->
+    <div id="startup-screen">
+        <img id="startup-image" src="file:///home/chronos/u-44f743bc90564ae1c220b93c5c9d6582fdd982f5/MyFiles/Downloads/IMG_6999.png" alt="Startup Screen">
+    </div>
+
+    <!-- Cable Box Interface -->
+    <div id="cable-interface" class="hidden">
+        <!-- Sidebar Section -->
+        <div id="sidebar">
+            <!-- Logo -->
+            <div id="logo-container">
+                <img id="logo" src="file:///home/chronos/u-44f743bc90564ae1c220b93c5c9d6582fdd982f5/MyFiles/Downloads/IMG_6999.png" alt="Logo">
+            </div>
+            <!-- Buttons -->
+            <div id="button-panel">
+                <button class="vertical-button">On Demand</button>
+                <button class="vertical-button">Channel Guide</button>
+                <button class="vertical-button">Calendar</button>
+                <button class="vertical-button">News</button>
+                <button class="vertical-button">Shop</button>
+                <button class="vertical-button">Settings</button>
+            </div>
+        </div>
+
+        <!-- Main Display Area -->
+        <div id="main-display">
+            <!-- Black Box (What’s Airing) -->
+            <div id="black-box">
+                <h3>Now Playing</h3>
+                <p>Your live program preview will appear here.</p>
+            </div>
+
+            <!-- Weather Widget -->
+            <div id="weather-widget">
+                <h2>Weather</h2>
+                <div id="weather-info">
+                    <p>Loading...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<script>
+// JavaScript to handle startup and interface interactions
+
+// Wait for the DOM to load
+document.addEventListener("DOMContentLoaded", () => {
+    // Simulate startup screen duration
+    setTimeout(() => {
+        document.getElementById("startup-screen").classList.add("hidden");
+        document.getElementById("cable-interface").classList.remove("hidden");
+        fetchWeather("New York"); // Default city
+    }, 3000); // 3 seconds
+});
+
+// Fetch Weather Information
+async function fetchWeather(city) {
+    const weatherInfo = document.getElementById("weather-info");
+    try {
+        const apiKey = "YOUR_API_KEY"; // Replace with your OpenWeatherMap API key
+        const response = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+        );
+        if (!response.ok) throw new Error("Weather data not found");
+        const data = await response.json();
+        weatherInfo.innerHTML = `
+            <p>${data.name}</p>
+            <p>${data.weather[0].description}</p>
+            <p>${data.main.temp} °C</p>
+        `;
+    } catch (error) {
+        weatherInfo.innerHTML = `<p>Error: ${error.message}</p>`;
+    }
+}
+//# sourceURL=userscript.js
+</script>
+</body>
+</html>
