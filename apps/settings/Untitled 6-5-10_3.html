@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+
+<style id="webmakerstyle">
+
+</style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teleblue Settings Menu</title>
+    <style>
+        /* General styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000; /* Black background */
+            color: #fff; /* White text */
+        }
+
+        /* Header styling */
+        header {
+            background-color: #111; /* Slightly lighter black for contrast */
+            padding: 15px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-bottom: 2px solid #444; /* Divider for header */
+        }
+
+        /* Back button styling */
+        .back-button {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: #444; /* Dark gray button background */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .back-button:hover {
+            background-color: #666; /* Lighter gray on hover */
+        }
+
+        /* Main content styling */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+
+        /* Button styling */
+        .settings-button {
+            background-color: #222; /* Dark gray button */
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 80%; /* Button width to adapt for responsiveness */
+            max-width: 400px; /* Cap the width for larger screens */
+            text-align: center;
+        }
+
+        .settings-button:hover {
+            background-color: #444; /* Slightly lighter gray on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        Teleblue Settings Menu
+        <button class="back-button" onclick="goBack()">Back</button>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <button class="settings-button" onclick="navigateTo('system-info.html')">System Info</button>
+        <button class="settings-button" onclick="navigateTo('general-settings.html')">General Settings</button>
+        <button class="settings-button" onclick="navigateTo('dump-saved-data.html')">Dump Saved Data</button>
+        <button class="settings-button" onclick="navigateTo('troubleshooting.html')">Troubleshooting</button>
+        <button class="settings-button" onclick="navigateTo('val-configuration.html')">VAL Configuration</button>
+    </main>
+
+    <!-- JavaScript for Navigation -->
+    <script>
+        // Navigate to previous page
+        function goBack() {
+            window.history.back();
+        }
+
+        // Navigate to specific pages
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+    </script>
+</body>
+</html>
+
+
+</body>
+</html>
